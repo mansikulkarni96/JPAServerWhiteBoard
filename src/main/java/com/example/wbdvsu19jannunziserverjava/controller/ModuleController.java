@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*" , allowCredentials = "true" , allowedHeaders = "*")
 public class ModuleController {
 
     @Autowired
@@ -32,8 +33,7 @@ public class ModuleController {
     @PostMapping("/api/courses/{cid}/modules")
     public List<Module> addModuleToCourse(
             @PathVariable("cid") Integer courseId,
-            @RequestBody Module newModule
-    ) {
+            @RequestBody Module newModule) {
         Course course = courseRepository.findCourseById(courseId);
         newModule.setCourse(course);
         repository.save(newModule);
@@ -44,4 +44,17 @@ public class ModuleController {
     public Module findModuleById(@PathVariable("mid") Integer id) {
         return repository.findModuleById(id);
     }
+    
+    @PutMapping("/api/modules/{mid}")
+	public Module updateCourse(@PathVariable("mid") int mid, @RequestBody Module module) {
+		Module m =  findModuleById(mid);
+		m.setId(module.getId());
+		m.setTitle(module.getTitle());
+		return repository.save(m);
+	}
+	
+	@DeleteMapping("/api/modules/{mid}")
+	public void deleteCourse(@PathVariable("mid") int mid) {
+		repository.deleteById(mid);
+	}
 }
