@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "*" , allowCredentials = "true" , allowedHeaders = "*")
 public class WidgetController {
 
     @Autowired
