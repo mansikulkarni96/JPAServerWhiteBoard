@@ -46,7 +46,7 @@ public class ModuleController {
     }
     
     @PutMapping("/api/modules/{mid}")
-	public Module updateCourse(@PathVariable("mid") int mid, @RequestBody Module module) {
+	public Module updateModule(@PathVariable("mid") int mid, @RequestBody Module module) {
 		Module m =  findModuleById(mid);
 		m.setId(module.getId());
 		m.setTitle(module.getTitle());
@@ -54,7 +54,7 @@ public class ModuleController {
 	}
 	
 	@DeleteMapping("/api/modules/{mid}")
-	public void deleteCourse(@PathVariable("mid") int mid) {
+	public void deleteModule(@PathVariable("mid") int mid) {
 		repository.deleteById(mid);
 	}
 }
