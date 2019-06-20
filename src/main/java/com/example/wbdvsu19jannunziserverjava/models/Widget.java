@@ -7,21 +7,10 @@ import javax.persistence.*;
 public class Widget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   	private Integer id;
- 	private int order;
-    
- 	 public static enum type 
-     { 
-  		HEADING, LIST, PARAGRAPH, IMAGE, YOUTUBE, HTML, LINK;
-     }
-  	
-  	private enum dataType{
-  		INTEGER,STRING,DATE,BOOLEAN
-  	}
-
-	private String name;
+    private Integer id;
+ 	private String name;
     private String text;
-    private type widType; 
+    private type type; 
     private int size;
     private String url;
     private String href;
@@ -30,9 +19,16 @@ public class Widget {
     private String cssClass;
     private String style;
     private String value;
-    private dataType valueType;
+    private dataType dataType;
     
-    
+    public static enum type 
+    { 
+ 		HEADING, LIST, PARAGRAPH, IMAGE, YOUTUBE, HTML, LINK;
+    }
+ 	
+ 	private enum dataType{
+ 		INTEGER,STRING,DATE,BOOLEAN
+ 	}
 
 	public String getHref() {
 		return href;
@@ -83,11 +79,11 @@ public class Widget {
 	}
 
 	public dataType getValueType() {
-		return valueType;
+		return dataType;
 	}
 
 	public void setValueType(dataType valueType) {
-		this.valueType = valueType;
+		this.dataType = valueType;
 	}
 
 	private String src;
@@ -95,7 +91,7 @@ public class Widget {
     public Widget(Integer id, String name, type t) {
         this.id = id;
         this.name = name;
-        this.widType = t;
+        this.type = t;
     }
 
     public Widget() {
@@ -109,14 +105,7 @@ public class Widget {
         this.id = id;
     }
 
-    public int getOrder() {
-		return order;
-	}
-
-	public void setOrder(int order) {
-		this.order = order;
-	}
-	
+  
 	public String getUrl() {
 		return url;
 	}
@@ -134,11 +123,11 @@ public class Widget {
     }
 
     public type getType() {
-        return widType;
+        return type;
     }
 
     public void setType(type t) {
-        this.widType = t;
+        this.type = t;
     }
 
     public String getText() {
