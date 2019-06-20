@@ -7,17 +7,95 @@ import javax.persistence.*;
 public class Widget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
-    private String type;
-    private String text;
-    private int size;
-    private String src;
+   	private Integer id;
+ 	private int order;
+    
+ 	 public static enum type 
+     { 
+  		HEADING, LIST, PARAGRAPH, IMAGE, YOUTUBE, HTML, LINK;
+     }
+  	
+  	private enum dataType{
+  		INTEGER,STRING,DATE,BOOLEAN
+  	}
 
-    public Widget(Integer id, String name, String type) {
+	private String name;
+    private String text;
+    private type widType; 
+    private int size;
+    private String url;
+    private String href;
+    private int width;
+    private int height;
+    private String cssClass;
+    private String style;
+    private String value;
+    private dataType valueType;
+    
+    
+
+	public String getHref() {
+		return href;
+	}
+
+	public void setHref(String href) {
+		this.href = href;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public String getCssClass() {
+		return cssClass;
+	}
+
+	public void setCssClass(String cssClass) {
+		this.cssClass = cssClass;
+	}
+
+	public String getStyle() {
+		return style;
+	}
+
+	public void setStyle(String style) {
+		this.style = style;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public dataType getValueType() {
+		return valueType;
+	}
+
+	public void setValueType(dataType valueType) {
+		this.valueType = valueType;
+	}
+
+	private String src;
+
+    public Widget(Integer id, String name, type t) {
         this.id = id;
         this.name = name;
-        this.type = type;
+        this.widType = t;
     }
 
     public Widget() {
@@ -31,6 +109,22 @@ public class Widget {
         this.id = id;
     }
 
+    public int getOrder() {
+		return order;
+	}
+
+	public void setOrder(int order) {
+		this.order = order;
+	}
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
     public String getName() {
         return name;
     }
@@ -39,12 +133,12 @@ public class Widget {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public type getType() {
+        return widType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setType(type t) {
+        this.widType = t;
     }
 
     public String getText() {
