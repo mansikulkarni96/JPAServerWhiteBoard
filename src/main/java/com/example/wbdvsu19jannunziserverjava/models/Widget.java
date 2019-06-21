@@ -8,20 +8,9 @@ public class Widget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
- 	private String name;
-    private String text;
-    private type type; 
-    private int size;
-    private String url;
-    private String href;
-    private int width;
-    private int height;
-    private String cssClass;
-    private String style;
-    private String value;
-    private dataType dataType;
     
-    public static enum type 
+   
+    public enum type 
     { 
  		HEADING, LIST, PARAGRAPH, IMAGE, YOUTUBE, HTML, LINK;
     }
@@ -30,6 +19,24 @@ public class Widget {
  		INTEGER,STRING,DATE,BOOLEAN
  	}
 
+ 	private String name;
+    private String text;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10)
+    private type widType; 
+    private int size;
+    private String url;
+    private String href;
+    private int width;
+    private int height;
+    private String cssClass;
+    private String style;
+    private String value;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10)
+    private dataType dType;
+    
 	public String getHref() {
 		return href;
 	}
@@ -79,11 +86,11 @@ public class Widget {
 	}
 
 	public dataType getValueType() {
-		return dataType;
+		return dType;
 	}
 
 	public void setValueType(dataType valueType) {
-		this.dataType = valueType;
+		this.dType = valueType;
 	}
 
 	private String src;
@@ -91,7 +98,7 @@ public class Widget {
     public Widget(Integer id, String name, type t) {
         this.id = id;
         this.name = name;
-        this.type = t;
+        this.widType = t;
     }
 
     public Widget() {
@@ -123,11 +130,11 @@ public class Widget {
     }
 
     public type getType() {
-        return type;
+        return widType;
     }
 
     public void setType(type t) {
-        this.type = t;
+        this.widType = t;
     }
 
     public String getText() {
