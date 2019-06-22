@@ -4,6 +4,9 @@ import com.example.wbdvsu19jannunziserverjava.models.Course;
 import com.example.wbdvsu19jannunziserverjava.models.Module;
 import com.example.wbdvsu19jannunziserverjava.models.Widget;
 import com.example.wbdvsu19jannunziserverjava.repositories.CourseRepository;
+import com.example.wbdvsu19jannunziserverjava.services.CourseService;
+import com.example.wbdvsu19jannunziserverjava.services.WidgetService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,39 +24,36 @@ import java.util.List;
 public class CourseController {
 
     @Autowired
-    CourseRepository repository;
+    CourseService service;
 
     @GetMapping("/api/courses")
     public List<Course> findAllCourses() {
-        return repository.findAllCourses();
+        return service.findAllCourses();
     }
 
     @GetMapping("/api/courses/{cid}")
     public Course findCourseById(
             @PathVariable("cid") Integer id) {
-        return repository.findCourseById(id);
+        return service.findCourseById(id);
     }
     
     @PostMapping("/api/courses")
     public Course addCourse(
             @RequestBody Course newCourse
     ) {
-        return repository.save(newCourse);
+        return service.addCourse(newCourse);
     }
     
     @DeleteMapping("/api/courses/{cid}")
-    public void deleteWidget(
+    public void deleteCourse(
             @PathVariable("cid") Integer courseId) {
-        repository.deleteById(courseId);
+    	service.deleteCourse(courseId);
     }
     
     @PutMapping("/api/courses/{cid}")
     public Course updateCourse(
     		@PathVariable("cid") Integer courseId, @RequestBody Course newCourse ) {
-    	Course c = repository.findCourseById(courseId);
-    	c.setId(newCourse.getId());
-    	c.setTitle(newCourse.getTitle());
-		return repository.save(c);
+    	return service.updateCourse(courseId, newCourse);
     	
     }
 }
