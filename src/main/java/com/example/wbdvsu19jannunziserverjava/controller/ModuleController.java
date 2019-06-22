@@ -19,10 +19,6 @@ public class ModuleController {
 	 @Autowired
 	 ModuleService service;
 
-
-    @Autowired
-    CourseRepository courseRepository;
-
     @GetMapping("/api/modules")
     public List<Module> findAllModules() {
         return service.findAllModules();
@@ -38,7 +34,7 @@ public class ModuleController {
     public List<Module> addModuleToCourse(
             @PathVariable("cid") Integer courseId,
             @RequestBody Module newModule) {
-        return service.findAllModulesForCourse(courseId);
+        return service.addModuleToCourse(courseId, newModule);
     }
 
     @GetMapping("/api/modules/{mid}")
