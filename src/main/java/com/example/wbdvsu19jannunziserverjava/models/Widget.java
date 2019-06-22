@@ -9,8 +9,8 @@ public class Widget {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-   
-    public enum type 
+  
+	public enum type 
     { 
  		HEADING, LIST, PARAGRAPH, IMAGE, YOUTUBE, HTML, LINK;
     }
@@ -19,12 +19,17 @@ public class Widget {
  		INTEGER,STRING,DATE,BOOLEAN
  	}
 
+ 	private enum listType{
+ 		ol,ul
+ 	}
+ 	
  	private String name;
     private String text;
     @Enumerated(EnumType.STRING)
     @Column(length = 10)
     private type widType; 
     private int size;
+    private int ord;
     private String url;
     private String href;
     private int width;
@@ -32,6 +37,9 @@ public class Widget {
     private String cssClass;
     private String style;
     private String value;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10)
+    private listType lType;
     
     @Enumerated(EnumType.STRING)
     @Column(length = 10)
@@ -160,4 +168,35 @@ public class Widget {
     public void setSrc(String src) {
         this.src = src;
     }
+
+	public int getOrder() {
+		return ord;
+	}
+
+	public void setOrder(int ord) {
+		this.ord = ord;
+	}
+	 public listType getlType() {
+			return lType;
+		}
+
+		public void setlType(listType lType) {
+			this.lType = lType;
+		}
+
+		public type getWidType() {
+			return widType;
+		}
+
+		public void setWidType(type widType) {
+			this.widType = widType;
+		}
+
+		public dataType getdType() {
+			return dType;
+		}
+
+		public void setdType(dataType dType) {
+			this.dType = dType;
+		}
 }

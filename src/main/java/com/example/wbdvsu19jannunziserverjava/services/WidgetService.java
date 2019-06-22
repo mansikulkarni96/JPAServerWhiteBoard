@@ -44,7 +44,17 @@ public class WidgetService {
     	wid.setSize(widget.getSize());
     	wid.setSrc(widget.getSrc());
     	wid.setText(widget.getText());
-    	wid.setType(widget.getType());
+    	wid.setHref(widget.getHref());
+    	wid.setHeight(widget.getHeight());
+    	wid.setStyle(widget.getStyle());
+    	wid.setUrl(widget.getUrl());
+    	wid.setValue(widget.getValue());
+    	wid.setValueType(widget.getValueType());
+    	wid.setWidth(widget.getWidth());
+    	wid.setlType(widget.getlType());
+    	wid.setOrder(widget.getOrder());
+    	wid.setdType(widget.getdType());   
+    	wid.setWidType(widget.getWidType());
     	return repository.save(wid);
     }
 }
