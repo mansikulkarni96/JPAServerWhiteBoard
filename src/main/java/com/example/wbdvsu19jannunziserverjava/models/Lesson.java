@@ -1,6 +1,4 @@
 package com.example.wbdvsu19jannunziserverjava.models;
-
-import com.example.wbdvsu19jannunziserverjava.models.Module;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
@@ -8,8 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "modules")
-public class Module {
+@Table(name = "lessons")
+public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -17,33 +15,33 @@ public class Module {
 
     @ManyToOne
     @JsonIgnore
-    private Course course;
+    private Module module;
 
     @Transient
-    public String getCourseTitle() {
-        return course.getTitle();
+    public String getModuleTitle() {
+        return module.getTitle();
     }
 
-    public Course getCourse() {
-        return course;
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
     }
     
-    public void setCourse(Course course) {
-        this.course = course;
+    
+    @OneToMany(mappedBy = "lesson")
+    private List<Topic> topics;
+
+    public List<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
     }
     
-    @OneToMany(mappedBy = "module")
-    private List<Lesson> lessons;
-
-    public List<Lesson> getLessons() {
-        return lessons;
-    }
-
-    public void setLesson(List<Lesson> lessons) {
-        this.lessons = lessons;
-    }
-
-   
 
     public Integer getId() {
         return id;
