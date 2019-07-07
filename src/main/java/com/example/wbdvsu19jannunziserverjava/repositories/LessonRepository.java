@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface LessonRepository
     extends CrudRepository<Lesson, Integer> {
-
     @Query("select lesson from Lesson lesson")
     public List<Lesson> findAllLessons();
 
