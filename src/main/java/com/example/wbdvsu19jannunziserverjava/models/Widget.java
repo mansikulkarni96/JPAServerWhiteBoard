@@ -2,6 +2,8 @@ package com.example.wbdvsu19jannunziserverjava.models;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="widgets")
 public class Widget {
@@ -9,6 +11,22 @@ public class Widget {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
+    @ManyToOne
+    @JsonIgnore
+    private Topic topic;
+
+    @Transient
+    public String getTopicTitle() {
+        return topic.getTitle();
+    }
+
+    public Topic getTopic() {
+        return topic;
+    }
+    
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
   
 	public enum type 
     { 

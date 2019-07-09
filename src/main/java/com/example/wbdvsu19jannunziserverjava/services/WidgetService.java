@@ -2,13 +2,10 @@ package com.example.wbdvsu19jannunziserverjava.services;
 
 import com.example.wbdvsu19jannunziserverjava.models.Widget;
 import com.example.wbdvsu19jannunziserverjava.repositories.WidgetRepository;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,6 +21,11 @@ public class WidgetService {
         return repository.findAllWidgets();
     }
 
+    public List<Widget> findAllWidgetsForTopic(
+            @PathVariable("tid") Integer topicId) {
+        return repository.findAllWidgetsForTopic(topicId);
+    }
+    
     public Widget findWidgetById(Integer id) {
         return repository.findWidgetById(id);
     }

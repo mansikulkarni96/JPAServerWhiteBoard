@@ -2,6 +2,8 @@ package com.example.wbdvsu19jannunziserverjava.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -43,5 +45,16 @@ public class Topic {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    @OneToMany(mappedBy = "topic")
+    private List<Widget> widgets;
+
+    public List<Widget> getWidgets() {
+        return widgets;
+    }
+
+    public void setWidgets(List<Widget> widgets) {
+        this.widgets = widgets;
     }
 }
