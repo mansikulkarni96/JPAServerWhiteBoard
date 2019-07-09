@@ -40,21 +40,36 @@ public class WidgetService {
     
     public Widget updateWidget(Integer id, Widget widget) {
     	Widget wid =repository.findWidgetById(id); 
-    	wid.setName(widget.getName());
-    	wid.setSize(widget.getSize());
-    	wid.setSrc(widget.getSrc());
-    	wid.setText(widget.getText());
-    	wid.setHref(widget.getHref());
-    	wid.setHeight(widget.getHeight());
-    	wid.setStyle(widget.getStyle());
-    	wid.setUrl(widget.getUrl());
-    	wid.setValue(widget.getValue());
-    	wid.setValueType(widget.getValueType());
-    	wid.setWidth(widget.getWidth());
-    	wid.setlType(widget.getlType());
-    	wid.setOrder(widget.getOrder());
-    	wid.setdType(widget.getdType());   
-    	wid.setWidType(widget.getWidType());
+    	if(widget.getName()!=null)
+    		wid.setName(widget.getName());
+    	if(widget.getSize() != 0)
+    		wid.setSize(widget.getSize());
+    	if(widget.getSrc() != null)
+    		wid.setSrc(widget.getSrc());
+    	if(widget.getText() != null)
+    		wid.setText(widget.getText());
+    	if(widget.getHref() != null)
+    		wid.setHref(widget.getHref());
+    	if(widget.getHeight() != 0)
+    		wid.setHeight(widget.getHeight());
+    	if(widget.getStyle() != null)
+    		wid.setStyle(widget.getStyle());
+    	if(widget.getUrl() != null)
+    		wid.setUrl(widget.getUrl());
+    	if(widget.getValue() != null)
+    		wid.setValue(widget.getValue());
+    	if(widget.getValueType() != null)
+    		wid.setValueType(widget.getValueType());
+    	if(widget.getWidth() != 0)
+    		wid.setWidth(widget.getWidth());
+    	if(widget.getType() != null)
+    		wid.setlType(widget.getlType());
+    	if(widget.getOrder() != 0)
+    		wid.setOrder(widget.getOrder());
+    	if(widget.getdType() != null)
+    		wid.setdType(widget.getdType());   
+    	if(widget.getWidType() != null)
+    		wid.setWidType(widget.getWidType());
     	return repository.save(wid);
     }
 }

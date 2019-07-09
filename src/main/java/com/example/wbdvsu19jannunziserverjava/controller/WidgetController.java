@@ -24,7 +24,8 @@ public class WidgetController {
 
     @GetMapping("/api/widgets/{wid}")
     public Widget findWidgetById(
-            @PathVariable("wid") Integer id) {
+            @PathVariable(
+            		"wid") Integer id) {
         return service.findWidgetById(id);
     }
 
